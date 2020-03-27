@@ -36,6 +36,7 @@ Route::group(['prefix' => 'v1'], function($router){
     Route::group(['prefix' => 'article'], function($router){
         Route::get('/index', 'v1\ArticleController@index');
         Route::post('/create', 'v1\ArticleController@store');
+        Route::get('/get/{id}', 'v1\ArticleController@show');
     });
 
 

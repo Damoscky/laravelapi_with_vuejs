@@ -101,7 +101,22 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::where('id', $id)
+        ->where('confirmed', true)->get();
+        if (count($article) > 0) {
+            return response()->json([
+                'error' => false,
+                'message' => null,
+                'data' => $article
+            ]);
+        }else{
+            return response()->json([
+                'error' => false,
+                'message' => 'Invalid Article ID',
+                'data' => null
+            ]);
+        }
+
     }
 
     /**
