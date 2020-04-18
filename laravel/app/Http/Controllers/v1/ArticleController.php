@@ -111,8 +111,8 @@ class ArticleController extends Controller
             ]);
         }else{
             return response()->json([
-                'error' => false,
-                'message' => 'Invalid Article ID',
+                'error' => true,
+                'message' => 'Article Not Found',
                 'data' => null
             ]);
         }
@@ -150,6 +150,20 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        if ($article) {
+            $article->delete();
+            return response()->json([
+                'error' => false,
+                'message' => 'Article Deleted!',
+                'data' => null,
+            ]);
+        }else{
+            return response()->json([
+                'error' => true,
+                'message' => 'Article Not Found',
+                'data' => null
+            ]);
+        }
     }
 }
